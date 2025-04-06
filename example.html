@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StarrySky 라이브러리 다중 예제</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #000;
+    }
+  </style>
+</head>
+<body>
+  <!-- 여러 별 효과가 적용될 컨테이너들 -->
+  <div id="star-container-1"></div>
+  <div id="star-container-2"></div>
+  <div id="star-container-3"></div>
+  
+  <!-- 라이브러리 로드 -->
+  <script src="star.js"></script>
+  <script>
+    // 라이브러리 초기화
+    document.addEventListener('DOMContentLoaded', () => {
+      // 여러 인스턴스 생성
+      const starrySky1 = new StarrySky({
+        containerId: 'star-container-1',
+        numberOfStars: 300,
+        minStarSize: 0.6,
+        maxStarSize: 2.4,
+        twinkleDuration: 5,
+        rotationDuration: 240
+      });
+      
+      const starrySky2 = new StarrySky({
+        containerId: 'star-container-2',
+        numberOfStars: 200,
+        minStarSize: 0.4,
+        maxStarSize: 1.8,
+        twinkleDuration: 4,
+        rotationDuration: 180
+      });
+      
+      const starrySky3 = new StarrySky({
+        containerId: 'star-container-3',
+        numberOfStars: 150,
+        minStarSize: 0.3,
+        maxStarSize: 1.5,
+        twinkleDuration: 3,
+        rotationDuration: 120
+      });
+    });
+  </script>
+</body>
+</html> 
