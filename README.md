@@ -1,5 +1,7 @@
 # OoJoo
 
+> Vibe Coding by AI 🎵
+
 OoJoo is a lightweight JavaScript library that easily adds beautiful flowing stars effects to web pages.
 
 ## Features
@@ -76,7 +78,7 @@ Visit the [demo page](https://example.com/demo) to see the library's demo and va
 
 MIT License
 
-Copyright (c) 2024 Jay Choi
+Copyright (c) 2025 Jay Choi
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

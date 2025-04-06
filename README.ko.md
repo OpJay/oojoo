@@ -1,5 +1,7 @@
 # OoJoo
 
+> 바이브코딩으로 만들었습니다~ 🎵
+
 OoJoo는 웹 페이지에 아름다운 별이 흐르는 효과를 쉽게 추가할 수 있는 경량화된 JavaScript 라이브러리입니다.
 
 ## 특징
@@ -76,7 +78,7 @@ oojoo.destroy();
 
 MIT License
 
-Copyright (c) 2024 Jay Choi
+Copyright (c) 2025 Jay Choi
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

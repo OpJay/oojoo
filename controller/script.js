@@ -141,11 +141,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const toggleControllerBtn = document.getElementById('toggle-controller');
   const controllerContainer = document.querySelector('.controller-container');
   let isControllerVisible = true;
+  let currentLanguage = 'ko'; // 기본 언어 설정
 
   toggleControllerBtn.addEventListener('click', () => {
     isControllerVisible = !isControllerVisible;
     controllerContainer.classList.toggle('hidden');
-    toggleControllerBtn.textContent = isControllerVisible ? '컨트롤러 숨기기' : '컨트롤러 보이기';
+    toggleControllerBtn.textContent = isControllerVisible ? translations[currentLanguage].hideController : translations[currentLanguage].showController;
   });
 
   // 언어 전환 기능
@@ -154,9 +155,9 @@ document.addEventListener('DOMContentLoaded', () => {
     ko: {
       title: 'OoJoo',
       description: '별이 흐르는 효과 라이브러리 데모',
-      starsCount: '별 개수:',
+      starsCount: '개수:',
       rotationSpeed: '회전 속도:',
-      starSize: '별 크기:',
+      starSize: '크기:',
       twinkleDuration: '반짝임 지속 시간:',
       pause: '일시 정지',
       resume: '재개',
@@ -168,9 +169,9 @@ document.addEventListener('DOMContentLoaded', () => {
     en: {
       title: 'OoJoo',
       description: 'Flowing Stars Effect Library Demo',
-      starsCount: 'Number of Stars:',
+      starsCount: 'Count:',
       rotationSpeed: 'Rotation Speed:',
-      starSize: 'Star Size:',
+      starSize: 'Size:',
       twinkleDuration: 'Twinkle Duration:',
       pause: 'Pause',
       resume: 'Resume',
@@ -182,9 +183,9 @@ document.addEventListener('DOMContentLoaded', () => {
     ja: {
       title: 'OoJoo',
       description: '流れる星エフェクトライブラリデモ',
-      starsCount: '星の数:',
+      starsCount: '数:',
       rotationSpeed: '回転速度:',
-      starSize: '星のサイズ:',
+      starSize: 'サイズ:',
       twinkleDuration: 'きらめき持続時間:',
       pause: '一時停止',
       resume: '再開',
@@ -196,9 +197,9 @@ document.addEventListener('DOMContentLoaded', () => {
     zh: {
       title: 'OoJoo',
       description: '流动星星效果库演示',
-      starsCount: '星星数量:',
+      starsCount: '数量:',
       rotationSpeed: '旋转速度:',
-      starSize: '星星大小:',
+      starSize: '大小:',
       twinkleDuration: '闪烁持续时间:',
       pause: '暂停',
       resume: '继续',
@@ -251,9 +252,12 @@ document.addEventListener('DOMContentLoaded', () => {
   languageButtons.forEach(btn => {
     btn.addEventListener('click', () => {
       const lang = btn.id.split('-')[1];
+      currentLanguage = lang; // 현재 언어 업데이트
       languageButtons.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       updateLanguage(lang);
+      // 컨트롤러 버튼 텍스트도 업데이트
+      toggleControllerBtn.textContent = isControllerVisible ? translations[lang].hideController : translations[lang].showController;
     });
   });
 });
