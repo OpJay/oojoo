@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>StarrySky 라이브러리 다중 예제</title>
+  <title>OoJoo 라이브러리 다중 예제</title>
   <style>
     body {
       margin: 0;
@@ -19,12 +19,12 @@
   <div id="star-container-3"></div>
   
   <!-- 라이브러리 로드 -->
-  <script src="star.js"></script>
+  <script src="oojoo.js"></script>
   <script>
     // 라이브러리 초기화
     document.addEventListener('DOMContentLoaded', () => {
       // 여러 인스턴스 생성
-      const starrySky1 = new StarrySky({
+      const oojoo1 = new OoJoo({
         containerId: 'star-container-1',
         numberOfStars: 300,
         minStarSize: 0.6,
@@ -33,7 +33,7 @@
         rotationDuration: 240
       });
       
-      const starrySky2 = new StarrySky({
+      const oojoo2 = new OoJoo({
         containerId: 'star-container-2',
         numberOfStars: 200,
         minStarSize: 0.4,
@@ -42,7 +42,7 @@
         rotationDuration: 180
       });
       
-      const starrySky3 = new StarrySky({
+      const oojoo3 = new OoJoo({
         containerId: 'star-container-3',
         numberOfStars: 150,
         minStarSize: 0.3,

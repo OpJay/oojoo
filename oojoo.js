@@ -1,5 +1,30 @@
-// --- 별 생성 및 애니메이션 라이브러리 ---
-class StarrySky {
+/**
+ * OoJoo.js
+ * A lightweight and customizable starry sky animation library
+ * 
+ * Copyright (c) 2025 Jay Choi.<jay@liveware.kr>
+ * All rights reserved.
+ * 
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/**
+ * OoJoo class creates a beautiful animated starry sky effect
+ * with customizable options for stars count, size, rotation speed,
+ * and twinkle animation.
+ */
+class OoJoo {
+  /**
+   * Creates a new OoJoo instance
+   * @param {Object} options - Configuration options
+   * @param {string} [options.containerId='star-container'] - ID of the container element
+   * @param {number} [options.numberOfStars=220] - Number of stars to create
+   * @param {number} [options.minStarSize=0.6] - Minimum star size in pixels
+   * @param {number} [options.maxStarSize=2.4] - Maximum star size in pixels
+   * @param {number} [options.twinkleDuration=5] - Duration of twinkle animation in seconds
+   * @param {number} [options.rotationDuration=240] - Duration of sky rotation in seconds
+   */
   constructor(options = {}) {
     this.options = {
       containerId: 'star-container',
@@ -11,7 +36,7 @@ class StarrySky {
       ...options
     };
     
-    // 소수점 2번째 자리에서 자르기
+    // Round star sizes to 2 decimal places for consistency
     this.options.minStarSize = this.roundToTwoDecimals(this.options.minStarSize);
     this.options.maxStarSize = this.roundToTwoDecimals(this.options.maxStarSize);
     
@@ -19,13 +44,21 @@ class StarrySky {
     this.init();
   }
 
-  // 소수점 2번째 자리에서 자르는 함수
+  /**
+   * Rounds a number to 2 decimal places
+   * @param {number} num - Number to round
+   * @returns {number} Rounded number
+   */
   roundToTwoDecimals(num) {
     return Math.round(num * 100) / 100;
   }
 
+  /**
+   * Initializes the starry sky effect
+   * Creates container and applies initial styles
+   */
   init() {
-    // 컨테이너가 없으면 생성
+    // Create container if it doesn't exist
     this.container = document.getElementById(this.options.containerId);
     if (!this.container) {
       this.container = document.createElement('div');
@@ -37,26 +70,29 @@ class StarrySky {
     this.applyStyles();
   }
 
+  /**
+   * Creates star elements with random positions and sizes
+   */
   createStars() {
-    // 기존 별들 제거
+    // Clear existing stars
     this.container.innerHTML = '';
     
     for (let i = 0; i < this.options.numberOfStars; i++) {
       const star = document.createElement('div');
       star.classList.add('star');
 
-      // 랜덤 위치 설정
+      // Set random position
       const xPos = Math.random() * 100;
       const yPos = Math.random() * 100;
       star.style.left = `${xPos}%`;
       star.style.top = `${yPos}%`;
 
-      // 랜덤 크기 설정
+      // Set random size within bounds
       const size = Math.random() * (this.options.maxStarSize - this.options.minStarSize) + this.options.minStarSize;
       star.style.width = `${this.roundToTwoDecimals(size)}px`;
       star.style.height = `${this.roundToTwoDecimals(size)}px`;
 
-      // 랜덤 반짝임 애니메이션 지연
+      // Set random twinkle animation delay
       const twinkleDelay = Math.random() * this.options.twinkleDuration;
       star.style.animationDelay = `-${twinkleDelay}s`;
 
@@ -64,8 +100,11 @@ class StarrySky {
     }
   }
 
+  /**
+   * Applies necessary styles for container and stars
+   */
   applyStyles() {
-    // 컨테이너 스타일 적용
+    // Container styles
     this.container.style.position = 'fixed';
     this.container.style.top = '50%';
     this.container.style.left = '50%';
@@ -76,7 +115,7 @@ class StarrySky {
     this.container.style.zIndex = '0';
     this.container.style.pointerEvents = 'none';
     
-    // 별 스타일 적용
+    // Star and animation styles
     const style = document.createElement('style');
     style.textContent = `
       @keyframes rotate-sky {
@@ -116,64 +155,83 @@ class StarrySky {
       }
     `;
     
-    // 기존 스타일 태그가 있으면 제거
-    const existingStyle = document.getElementById('starry-sky-style');
+    // Remove existing style tag if present
+    const existingStyle = document.getElementById('oojoo-style');
     if (existingStyle) {
       existingStyle.remove();
     }
     
-    style.id = 'starry-sky-style';
+    style.id = 'oojoo-style';
     document.head.appendChild(style);
   }
 
-  // 별 개수 변경
+  /**
+   * Updates the number of stars
+   * @param {number} count - New number of stars
+   */
   setNumberOfStars(count) {
     this.options.numberOfStars = count;
     this.createStars();
   }
 
-  // 회전 속도 변경
+  /**
+   * Updates the rotation speed of the sky
+   * @param {number} seconds - New rotation duration in seconds
+   */
   setRotationDuration(seconds) {
     this.options.rotationDuration = seconds;
     this.container.style.animation = `rotate-sky ${seconds}s linear infinite`;
   }
   
-  // 별 크기 변경
+  /**
+   * Updates the size range of stars
+   * @param {number} minSize - New minimum star size
+   * @param {number} maxSize - New maximum star size
+   */
   setStarSize(minSize, maxSize) {
     this.options.minStarSize = this.roundToTwoDecimals(minSize);
     this.options.maxStarSize = this.roundToTwoDecimals(maxSize);
     this.createStars();
   }
   
-  // 반짝임 지속 시간 변경
+  /**
+   * Updates the twinkle animation duration
+   * @param {number} seconds - New twinkle duration in seconds
+   */
   setTwinkleDuration(seconds) {
     this.options.twinkleDuration = seconds;
     this.createStars();
-    this.applyStyles(); // 스타일 재적용 필요
+    this.applyStyles();
   }
 
-  // 애니메이션 일시 정지
+  /**
+   * Pauses the sky rotation animation
+   */
   pause() {
     this.container.style.animationPlayState = 'paused';
   }
 
-  // 애니메이션 재개
+  /**
+   * Resumes the sky rotation animation
+   */
   resume() {
     this.container.style.animationPlayState = 'running';
   }
 
-  // 애니메이션 제거
+  /**
+   * Removes the starry sky effect and cleans up resources
+   */
   destroy() {
     if (this.container) {
       this.container.remove();
     }
     
-    const style = document.getElementById('starry-sky-style');
+    const style = document.getElementById('oojoo-style');
     if (style) {
       style.remove();
     }
   }
 }
 
-// 전역 객체로 노출
-window.StarrySky = StarrySky;
+// Expose OoJoo to global scope
+window.OoJoo = OoJoo;
